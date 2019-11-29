@@ -418,6 +418,7 @@ class DiredBaseCommand:
         files   = []
         index_dirs  = []
         index_files = []
+        icons = sublime.load_settings('dired.sublime-settings').get('dired_icons', {})
         for name in names:
             full_name = join(path, goto, name)
             if isdir(full_name):
@@ -425,7 +426,8 @@ class DiredBaseCommand:
                 items.append(''.join([level, u"▸ ", name, os.sep]))
             else:
                 index_files.append(full_name)
-                files.append(''.join([level, u"≡ ", name]))
+                icon = icons.get(name.split('.')[-1], '≡')
+                files.append(''.join([level, icon, ' ', name]))
         index = index_dirs + index_files
         self.index = self.index[:self.number_line] + index + self.index[self.number_line:]
         items += files
@@ -535,7 +537,7 @@ class DiredBaseCommand:
             pattern = u'^\s*[▸▾] '
             sep = re.escape(os.sep)
         else:
-            pattern = u'^\s*≡ '
+            pattern = r'^\s*\S '
             sep = ''
         return self.view.find_all(u'%s%s%s' % (pattern, fname, sep))
 

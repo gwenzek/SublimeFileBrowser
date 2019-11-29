@@ -15,7 +15,7 @@ contexts:
         3: string.name.directory.dired
         4: punctuation.definition.directory.slash.dired
         5: string.error.dired
-    - match: '^(\s*)(≡ )(\S.*?(\.[^\.\n]+)?)$'
+    - match: '^(\s*)(\S+) (\S.*?(\.[^\.\n]+)?)$'
       scope: dired.item.file
       captures:
         1: indent

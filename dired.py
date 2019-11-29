@@ -291,6 +291,7 @@ class DiredRefreshCommand(TextCommand, DiredBaseCommand):
                 tree[~0] += '\t<empty>'
                 return
 
+        icons = sublime.load_settings('dired.sublime-settings').get('dired_icons', {})
         files = []
         index_files = []
         for f in items:
@@ -304,7 +305,8 @@ class DiredRefreshCommand(TextCommand, DiredBaseCommand):
                 tree.append(u'%s▸ %s%s' % (indent, f.rstrip(os.sep), os.sep))
             else:
                 index_files.append(new_path)
-                files.append(u'%s≡ %s' % (indent, f))
+                icon = icons.get(f.split(".")[-1], "≡")
+                files.append(u'%s%s %s' % (indent, icon, f))
 
         self.index += index_files
         tree += files

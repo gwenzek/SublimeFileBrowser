@@ -70,6 +70,11 @@
   // Only for OSX and Linux.
   "dired_dup_separator": " — ",
 
+  // Map file extensions to a specific icon.
+  // Works best with an extended font from https://www.nerdfonts.com/
+  // Example: "dired_icons": { "json": "", "md": "", "py": "", "zip": ""},
+  "dired_icons": {},
+
   // Automatically disable Vintageous to avoid keybindings incompatibilities;
   // note it is Vintageous setting, if it does not work you should report into
   // appropriate repository https://github.com/guillermooo/Vintageous/issues
