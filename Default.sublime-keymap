@@ -331,7 +331,7 @@
       "context": [
         { "key": "selector", "operator": "equal", "operand": "text.dired" },
         { "key": "setting.dired_rename_mode", "operand": true },
-        { "key": "preceding_text", "operator": "regex_contains", "operand": "[≡▸▾]\\s*$|^\\s*$|^⠤.*$"}
+        { "key": "preceding_text", "operator": "regex_contains", "operand": "[≡▸▾]\\s*$|^\\s*$|^\\s*\\S\\s$|^⠤.*$"}
       ]
   },
   {

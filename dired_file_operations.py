@@ -255,7 +255,7 @@ class DiredRenameCommitCommand(TextCommand, DiredBaseCommand):
         before = self.view.settings().get('rename')
         # We marked the set of files with a region.  Make sure the region still has the same
         # number of files.
-        after  = self.get_after()
+        after = self.get_after()
 
         if len(after) != len(before):
             return sublime.error_message('You cannot add or remove lines')
@@ -276,7 +276,10 @@ class DiredRenameCommitCommand(TextCommand, DiredBaseCommand):
         self.index = self.get_all()
         path = self.path
         lines = self._get_lines(self.view.get_regions('rename'), self.fileregion())
-        return [self._new_name(line, path=path) for line in lines]
+        lines = [self._new_name(line, path=path) for line in lines]
+        assert '[RENAME MODE]' in lines[0], "Please don't edit the header '[RENAME MODE]' '" + lines[0] + "'"
+        lines = lines[1:]
+        return lines
 
     def _new_name(self, line, path=None, full=False):
         '''Return new name for line

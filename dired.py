@@ -306,6 +306,8 @@ class DiredRefreshCommand(TextCommand, DiredBaseCommand):
             else:
                 index_files.append(new_path)
                 icon = icons.get(f.split(".")[-1], "≡")
+                # Ensure icon are 1 char long
+                icon = icon[0]
                 files.append(u'%s%s %s' % (indent, icon, f))
 
         self.index += index_files
