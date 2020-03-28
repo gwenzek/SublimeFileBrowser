@@ -239,7 +239,7 @@ class DiredBaseCommand:
     def _get_name_point(self, line):
         '''Return point at which filename starts (i.e. after icon & whitspace)'''
         scope = self.view.scope_name(line.a)
-        if 'string' not in scope:
+        if 'indent' in scope:
             name_point = self.view.extract_scope(line.a).b
         else:
             name_point = line.a + (2 if not 'parent_dir' in scope else 0)

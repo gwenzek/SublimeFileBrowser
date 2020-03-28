@@ -52,7 +52,7 @@
 
       <dict>
           <key>match</key>
-          <string>^(\s*)(≡ )(\S.*?(\.[^\.\n]+)?)$</string>
+          <string>^(\s*)(\S )(\S.*?(\.[^\.\n]+)?)$</string>
           <key>name</key>
           <string>dired.item.file</string>
           <key>captures</key>

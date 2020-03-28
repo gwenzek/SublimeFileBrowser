@@ -685,6 +685,9 @@ class DiredFold(TextCommand, DiredBaseCommand):
             end_line   = start_line + removed_count
             self.index = self.index[:start_line] + self.index[end_line:]
             v.settings().set('dired_index', self.index)
+        else:
+            # I'm not sure this is the right behavior.
+            start_line = 1 + v.rowcol(line.a)[0]
 
         if self.marked or self.seled:
             path = self.path
@@ -695,7 +698,11 @@ class DiredFold(TextCommand, DiredBaseCommand):
                 self.seled[0].append(folded_name)
 
         name_point  = self._get_name_point(line)
-        icon_region = Region(name_point - 2, name_point - 1)
+        if v.substr(name_point) == "▾":
+            # I'm not sure why but sometimes get_name_point returns the icon
+            icon_region = Region(name_point, name_point + 1)
+        else:
+            icon_region = Region(name_point - 2, name_point - 1)
 
         v.set_read_only(False)
         v.replace(edit, icon_region, u'▸')
